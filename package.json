@@ -1,0 +1,14 @@
+{
+  "name": "git_api",
+  "version": "0.0.1",
+  "description": "using the github api to store contributor information",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mitchell O'Neill",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^2.0.0"
+  }
+}
