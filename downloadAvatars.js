@@ -15,17 +15,24 @@ module.exports = {
     }).pipe(fs.createWriteStream(fileName));
   },
   downloadAvatars: function (err, contObj) {
-    var dirName = process.argv[3] + "/"
-    console.log(dirName);
-      fs.mkdir(dirName, function(){
+     fs.access('avatars/', function(err) {
+      if (err && err.code === 'ENOENT') {
+        fs.mkdir('avatars/');
         for(idx in contObj) {
           var imgURL = contObj[idx].avatar_url;
-          var fileName = dirName + contObj[idx].login;
+          var fileName = 'avatars/' + contObj[idx].login;
           module.exports.downloadIMG(imgURL, fileName);
-        }
-      });
-    }
-};
+      } else {
+        for(idx in contObj) {
+          var imgURL = contObj[idx].avatar_url;
+          var fileName = 'avatars/' + contObj[idx].login;
+          module.exports.downloadIMG(imgURL, fileName);
+          }
+        });
+      }
+   })
+  }
+}
 // module.exports = {
 //   downloadAvatars: downloadAvatars,
 //   downloadIMG: downloadIMG
